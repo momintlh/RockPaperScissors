@@ -20,8 +20,10 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+// TODO: Add score for both Player and PC, after 3 rounds log the final winner! 
+
 function game() {
-    for (let index = 0; index < 5; index++) {
+    for (let index = 0; index < 3; index++) {
         const playerSelection = prompt("rock, paper or scissors?: ");
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
