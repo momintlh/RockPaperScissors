@@ -1,15 +1,10 @@
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
-  var index = Math.floor(Math.random() * choices.length);
-  return choices[index];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
 }
 
-function playRound(
-  playerSelection,
-  computerSelection,
-  playerScore,
-  computerScore
-) {
+function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
 
   if (playerSelection === computerSelection) {
@@ -19,11 +14,15 @@ function playRound(
     (playerSelection === "scissors" && computerSelection === "paper") ||
     (playerSelection === "paper" && computerSelection === "rock")
   ) {
-    playerScore += 10;
-    return `You Win! ${playerSelection} beats ${computerSelection}`;
+    return "Player wins!";
+  } else if (
+    (computerSelection === "rock" && playerSelection === "scissors") ||
+    (computerSelection === "scissors" && playerSelection === "paper") ||
+    (computerSelection === "paper" && playerSelection === "rock")
+  ) {
+    return "Computer wins!";
   } else {
-    computerScore += 10;
-    return `You Lose! ${computerSelection} beats ${playerSelection}`;
+    return "No Result! due to invalid input";
   }
 }
 
@@ -31,18 +30,29 @@ function game() {
   let playerScore = 0;
   let computerScore = 0;
 
-  for (let index = 0; index < 3; index++) {
-    const playerSelection = prompt("rock, paper or scissors?: ");
+  for (let round = 0; round < 3; round++) {
+    const playerSelection = prompt("Rock, paper, or scissors?: ");
     const computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection, playerScore, computerScore);
+    const result = playRound(playerSelection, computerSelection);
+
+    console.log(
+      `Player chose "${playerSelection}" while the Computer chose "${computerSelection}"`
+    );
+    console.log(result);
+
+    if (result === "Player wins!") {
+      playerScore += 10;
+    } else if (result === "Computer wins!") {
+      computerScore += 10;
+    }
   }
 
   if (playerScore > computerScore) {
-    console.log(`Player wins with ${playerScore}`);
+    console.log(`Player wins with ${playerScore} points!`);
   } else if (computerScore > playerScore) {
-    console.log(`Computer wins with ${computerScore}`);
+    console.log(`Computer wins with ${computerScore} points!`);
   } else {
-    console.log("It's a tie game.");
+    console.log("It's a draw!");
   }
 }
 
