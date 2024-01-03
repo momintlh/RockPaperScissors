@@ -1,3 +1,20 @@
+const btns = document.querySelectorAll('button');
+let playerSelection = null;
+
+btns.forEach(btn => {
+
+  btn.addEventListener("click", function () {
+    playerSelection = btn.textContent;
+    console.log(playerSelection)
+  });
+
+
+});
+
+
+
+
+
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
   const randomIndex = Math.floor(Math.random() * choices.length);
@@ -30,23 +47,22 @@ function game() {
   let playerScore = 0;
   let computerScore = 0;
 
-  for (let round = 0; round < 3; round++) {
-    const playerSelection = prompt("Rock, paper, or scissors?: ");
-    const computerSelection = getComputerChoice();
-    const result = playRound(playerSelection, computerSelection);
+  const computerSelection = getComputerChoice();
+  const result = playRound(playerSelection, computerSelection);
 
-    console.log(
-      `Player chose "${playerSelection}" while the Computer chose "${computerSelection}"`
-    );
-    console.log(result);
+  console.log(
+    `Player chose "${playerSelection}" while the Computer chose "${computerSelection}"`
+  );
+  console.log(result);
 
-    if (result === "Player wins!") {
-      playerScore += 10;
-    } else if (result === "Computer wins!") {
-      computerScore += 10;
-    }
+  if (result === "Player wins!") {
+    playerScore += 10;
+  } else if (result === "Computer wins!") {
+    computerScore += 10;
   }
 
+
+  // Game End Logic
   if (playerScore > computerScore) {
     console.log(`Player wins with ${playerScore} points!`);
   } else if (computerScore > playerScore) {
@@ -55,5 +71,3 @@ function game() {
     console.log("It's a draw!");
   }
 }
-
-game();
