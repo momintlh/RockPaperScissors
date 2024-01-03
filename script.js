@@ -1,11 +1,14 @@
 const btns = document.querySelectorAll('button');
+const selections = document.querySelector('h3')
+const roundResult = document.querySelector('h4')
+
 let playerSelection = null;
 
 btns.forEach(btn => {
 
   btn.addEventListener("click", function () {
     playerSelection = btn.textContent;
-    console.log(playerSelection)
+    game()
   });
 
 
@@ -50,10 +53,10 @@ function game() {
   const computerSelection = getComputerChoice();
   const result = playRound(playerSelection, computerSelection);
 
-  console.log(
-    `Player chose "${playerSelection}" while the Computer chose "${computerSelection}"`
-  );
-  console.log(result);
+  selections.textContent = `Player chose "${playerSelection}" while the Computer chose "${computerSelection}."`;
+  roundResult.textContent = `${result}`
+
+
 
   if (result === "Player wins!") {
     playerScore += 10;
