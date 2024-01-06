@@ -14,10 +14,6 @@ btns.forEach(btn => {
 
 });
 
-
-
-
-
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
   const randomIndex = Math.floor(Math.random() * choices.length);
@@ -55,8 +51,6 @@ function game() {
 
   selections.textContent = `Player chose "${playerSelection}" while the Computer chose "${computerSelection}."`;
   roundResult.textContent = `${result}`
-
-
 
   if (result === "Player wins!") {
     playerScore += 10;
